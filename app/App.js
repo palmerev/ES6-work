@@ -2,30 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class App extends React.Component {
+    constructor() {
+        super(); // sets 'this' to proper context
+        this.state = {
+            txt: 'state text (type something)'
+        }
+    }
+    update(e) {
+        this.setState({txt: e.target.value});
+    }
     render() {
-        let text = this.props.txt;
-        let cat = this.props.cat;
+        // return (<h1>{this.props.txt}</h1>)
         return (
             <div>
-            <h1>{text}</h1>
-            <p>cat is: <em>{cat}</em></p>
-            </div>);
+                <input type="text" onChange={this.update.bind(this)} />
+                <h1>{this.state.txt}</h1>
+            </div>
+        );
     }
 }
 
-App.propTypes = {
-    txt: React.PropTypes.string,
-    cat: React.PropTypes.number.isRequired
-}
-
-App.defaultProps = {
-    txt: "default text",
-    cat: 5
-}
-
-ReactDOM.render(
-    <App txt="this is the props value" cat={10} />,
-    document.getElementById('app')
-);
-
 export default App;
+
+// example code didn't have this, but I can't get it to render without it.
+ReactDOM.render(
+    <App txt="app text" />,
+    document.getElementById('app')
+)
+
+// const App = () => (<h1>Hello</h1>);
