@@ -5,29 +5,61 @@ class App extends React.Component {
     constructor() {
         super(); // sets 'this' to proper context
         this.state = {
-            txt: 'state text (type something)'
-        }
+            red: 0,
+            green: 0,
+            blue: 0
+        };
+        this.update = this.update.bind(this);
     }
     update(e) {
-        this.setState({txt: e.target.value});
+        this.setState({
+            red: ReactDOM.findDOMNode(this.refs.red.refs.inp).value,
+            green: ReactDOM.findDOMNode(this.refs.green.refs.inp).value,
+            blue: ReactDOM.findDOMNode(this.refs.blue.refs.inp).value
+        });
     }
     render() {
-        // return (<h1>{this.props.txt}</h1>)
         return (
             <div>
-                <input type="text" onChange={this.update.bind(this)} />
                 <h1>{this.state.txt}</h1>
+                <br />
+                <hr />
+                <Slider ref="red" update={this.update} />
+                {this.state.red}
+                <br />
+                <Slider ref="green" update={this.update} />
+                {this.state.green}
+                <br />
+                <Slider ref="blue" update={this.update} />
+                {this.state.blue}<br />
             </div>
         );
     }
 }
 
+class Slider extends React.Component {
+    render() {
+        return (
+            <div>
+                <input ref="inp" type="range"
+                min="0"
+                max="255"
+                onChange={this.props.update} />
+            </div>
+        );
+    }
+    componentDidMount() {
+
+    }
+}
+
+const Widget = (props) => {
+    return (
+        <div>
+        <input type="text" onChange={props.update} />
+        <h1>{props.txt}</h1>
+        </div>
+    );
+};
+
 export default App;
-
-// example code didn't have this, but I can't get it to render without it.
-ReactDOM.render(
-    <App txt="app text" />,
-    document.getElementById('app')
-)
-
-// const App = () => (<h1>Hello</h1>);
