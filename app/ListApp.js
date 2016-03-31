@@ -19,7 +19,7 @@ export default class ListApp extends React.Component {
     this.toggleDone = this.toggleDone.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.addItem = this.addItem.bind(this);
-    // this.handleFormChange = this.handleFormChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
   }
   toggleDone(i) {
@@ -42,14 +42,14 @@ export default class ListApp extends React.Component {
       }
     );
   }
-  handleFormChange(e) {
+  handleKeyDown(e) {
     const ENTER_KEY = 13;
-    if (e.key === 'Enter' || e.which === ENTER_KEY) {
-      this.addItem(e);
+    if(e.which === ENTER_KEY || e.key === 'Enter') {
+      this.addItem();
     }
-    else {
-      this.setState({ inputText: e.target.value });
-    }
+  }
+  handleFormChange(e) {
+    this.setState({ inputText: e.target.value });
   }
   addItem(e) {
     let items = this.state.items.map((item) => (item));
@@ -64,6 +64,7 @@ export default class ListApp extends React.Component {
           removeItem={this.removeItem}
           items={this.state.items} />
         <AddItemForm inputText={this.state.inputText} handleFormChange={this.handleFormChange}
+        handleKeyDown={this.handleKeyDown}
           addItem={this.addItem} />
       </div>
     );
