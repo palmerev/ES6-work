@@ -14,3 +14,10 @@ export default function ListItem(props) {
     </li>
   )
 }
+
+ListItem.propTypes = {
+  toggleDone: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  done: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+}

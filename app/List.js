@@ -7,7 +7,6 @@ const List = (props) => {
     (item, i) => (
       <ListItem
         key={i}
-        index={i}
         text={item.text}
         done={item.done}
         toggleDone={props.toggleDone.bind(this, i)}
@@ -22,4 +21,7 @@ const List = (props) => {
   );
 }
 
+List.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.object),
+}
 export default List
