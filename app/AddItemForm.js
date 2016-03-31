@@ -5,7 +5,7 @@ export default class AddItemForm extends React.Component {
     return (
       <div>
         <p>Add Item:</p>
-        <input type="text"
+        <input type="text" value={this.props.inputText}
           onChange={this.props.handleFormChange} />
         <button onClick={this.props.addItem}>Add</button>
       </div>

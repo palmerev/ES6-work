@@ -14,7 +14,7 @@ export default class ListApp extends React.Component {
         {text: 'do something else', done: false},
         {text: 'keep doing things', done: false},
       ],
-      formText: ''
+      inputText: ''
     }
     this.toggleDone = this.toggleDone.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -48,14 +48,14 @@ export default class ListApp extends React.Component {
       this.addItem(e);
     }
     else {
-      this.setState({ formText: e.target.value });
+      this.setState({ inputText: e.target.value });
     }
   }
   addItem(e) {
     let items = this.state.items.map((item) => (item));
-    const newItem = { text: this.state.formText, done: false };
+    const newItem = { text: this.state.inputText, done: false };
     items.push(newItem);
-    this.setState({ items: items });
+    this.setState({ items: items, inputText: '' });
   }
   render() {
     return (
@@ -63,7 +63,7 @@ export default class ListApp extends React.Component {
         <List toggleDone={this.toggleDone}
           removeItem={this.removeItem}
           items={this.state.items} />
-        <AddItemForm handleFormChange={this.handleFormChange}
+        <AddItemForm inputText={this.state.inputText} handleFormChange={this.handleFormChange}
           addItem={this.addItem} />
       </div>
     );
