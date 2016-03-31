@@ -11,6 +11,7 @@ const List = (props) => {
         text={item.text}
         done={item.done}
         toggleDone={props.toggleDone.bind(this, i)}
+        removeItem={props.removeItem.bind(this, i)}
       />
     )
   )
