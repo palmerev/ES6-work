@@ -4,13 +4,13 @@ import { PropTypes } from 'react';
 export default function ListItem(props) {
   return (
     <li>
+      <button onClick={props.removeItem}>x</button>
       <span
         onClick={props.toggleDone}
         className={props.done ? "item-done" : "item-not-done"}
       >
         {props.text}
       </span>
-      <button onClick={props.removeItem}>Delete</button>
     </li>
   )
 }
