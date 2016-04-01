@@ -15,9 +15,9 @@ const List = (props) => {
     )
   )
   return (
-    <ul>
-      {listItems}
-    </ul>
+      <ul className={listItems.length > 0 ? 'display-items' : 'display-none'}>
+        {listItems}
+      </ul>
   );
 }
 

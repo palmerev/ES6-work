@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 import List from './List';
 import ListItem from './ListItem';
 import AddItemForm from './AddItemForm';
@@ -58,11 +59,23 @@ export default class ListApp extends React.Component {
     this.setState({ items: items, inputText: '' });
   }
   render() {
+    const messageWrapperClasses = classNames({ 'wrapper': true,
+          'display-none': this.state.items.length > 0,
+          'display-msg': this.state.items.length <= 0 });
+    const listWrapperClasses = classNames({ 'wrapper': true,
+          'display-none': this.state.items.length <= 0,
+          'display-list': this.state.items.length > 0 });
     return (
-      <div>
+      <div ref="app">
+        <h1>To-Do List</h1>
+        <div className={listWrapperClasses}>
         <List toggleDone={this.toggleDone}
           removeItem={this.removeItem}
           items={this.state.items} />
+        </div>
+        <div className={messageWrapperClasses}>
+          <p>You have nothing to do!</p>
+        </div>
         <AddItemForm inputText={this.state.inputText} handleFormChange={this.handleFormChange}
         handleKeyDown={this.handleKeyDown}
           addItem={this.addItem} />
