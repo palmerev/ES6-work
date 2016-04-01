@@ -10,11 +10,7 @@ export default class ListApp extends React.Component {
   constructor() {
     super();
     this.state = {
-      items: [
-        {text: 'doing a thing', done: false},
-        {text: 'do something else', done: false},
-        {text: 'keep doing things', done: false},
-      ],
+      items: [],
       inputText: ''
     }
     this.toggleDone = this.toggleDone.bind(this);
