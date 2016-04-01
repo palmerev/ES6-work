@@ -54,9 +54,12 @@ export default class ListApp extends React.Component {
   }
   addItem(e) {
     let items = this.state.items.map((item) => (item));
-    const newItem = { text: this.state.inputText, done: false };
-    items.push(newItem);
-    this.setState({ items: items, inputText: '' });
+    const text = this.state.inputText.trim();
+    if (text) {
+      const newItem = { text: text, done: false };
+      items.push(newItem);
+      this.setState({ items: items, inputText: '' });
+    }
   }
   render() {
     const messageWrapperClasses = classNames({ 'wrapper': true,
