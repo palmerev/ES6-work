@@ -24,13 +24,13 @@ export default class ListApp extends React.Component {
       { items:  this.state.items.map(
           (item, index) => {
             return index === i ?
-              { text: item.text, done: !item.done } :
-              item
+              { text: item.text, done: !item.done } : item
           }
         )
       }
     );
   }
+
   removeItem(i) {
     this.setState(
       { items: this.state.items.filter(
@@ -49,7 +49,7 @@ export default class ListApp extends React.Component {
     this.setState({ inputText: e.target.value });
   }
   addItem(e) {
-    let items = this.state.items.map((item) => (item));
+    let items = [...this.state.items];
     const text = this.state.inputText.trim();
     if (text) {
       const newItem = { text: text, done: false };
